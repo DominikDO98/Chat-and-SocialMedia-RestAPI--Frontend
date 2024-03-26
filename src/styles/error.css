@@ -1,0 +1,11 @@
+#errorBox {
+  background-color: black;
+  padding: 15px;
+  border-radius: 15%;
+}
+#errorTitle {
+  color: white;
+}
+#errorMessage {
+  color: white;
+}
