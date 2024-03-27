@@ -1,9 +1,9 @@
 import { Component, ErrorInfo, PropsWithChildren } from "react";
-import { ErrorView } from "../views/ErrorView";
+import { ErrorView } from "../../views/ErrorView";
 
 interface Props extends PropsWithChildren {
   hasError: boolean;
-  fallback: string;
+  message: string;
 }
 
 export class ErrorBoundry extends Component {
@@ -12,12 +12,11 @@ export class ErrorBoundry extends Component {
     super(props);
     this.state = {
       hasError: false,
-      fallback: "Oh no! Something went wrong...",
     };
   }
 
   static getDerivedStateFromError(error: Error) {
-    return { hasError: true };
+    if (error) return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
@@ -26,7 +25,7 @@ export class ErrorBoundry extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <ErrorView message={this.props.fallback} />;
+      return <ErrorView message={this.props.message} />;
     }
     return this.props.children;
   }

@@ -1,6 +1,13 @@
 import "./App.css";
-import { ErrorView } from "./components/views/ErrorView";
+import { ErrorBoundry } from "./components/utils/errorboundry/ErrorBoundry";
+import { TestView } from "./components/views/TestView";
 
 export function App() {
-  return <ErrorView message="Errrrrrorrrr" />;
+  return (
+    <>
+      <ErrorBoundry message="error">
+        <TestView></TestView>
+      </ErrorBoundry>
+    </>
+  );
 }
