@@ -11,10 +11,11 @@ export const LogIn = () => {
           <p>Username</p>
           <input type="text" name="username" id="log_username" />
         </label>
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" name="password" id="log_password" />
+
+        <label>
+          <p>Password</p>
+          <input type="password" name="password" id="log_password" />
+        </label>
       </label>
     </div>
   );
