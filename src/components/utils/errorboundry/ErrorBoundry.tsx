@@ -2,7 +2,6 @@ import { Component, ErrorInfo, PropsWithChildren } from "react";
 import { ErrorView } from "../../views/ErrorView";
 
 interface Props extends PropsWithChildren {
-  hasError: boolean;
   message: string;
 }
 
@@ -12,20 +11,21 @@ export class ErrorBoundry extends Component {
     super(props);
     this.state = {
       hasError: false,
+      message: "",
     };
   }
 
   static getDerivedStateFromError(error: Error) {
-    if (error) return { hasError: true };
+    return { hasError: true, message: error.message };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.log(error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return <ErrorView message={this.props.message} />;
+      return <ErrorView message={this.state.message} />;
     }
     return this.props.children;
   }
