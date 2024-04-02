@@ -1,4 +1,4 @@
-import { Form, Formik, useFormik } from "formik";
+import { Form, Formik } from "formik";
 import { TextInput } from "../common/formikFields/TextInput";
 export const SignUp = () => {
   return (
@@ -33,6 +33,7 @@ export const SignUp = () => {
             <TextInput label="Password" type="password" name="password" />
             {/* @TODO: show error if invalid and on blur */}
           </label>
+          <button type="submit">Sign up</button>
         </Form>
       </Formik>
     </div>
