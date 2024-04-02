@@ -1,22 +1,41 @@
+import { Form, Formik } from "formik";
+import { TextInput } from "../common/formikFields/TextInput";
+
 export const LogIn = () => {
   return (
-    <div>
-      <label>
-        <p>Login</p>
-        <label>
-          <p>E-mail address</p>
-          <input type="email" name="email_address" id="log_email" />
-        </label>
-        <label>
-          <p>Username</p>
-          <input type="text" name="username" id="log_username" />
-        </label>
+    <div id="login">
+      <Formik
+        initialValues={{
+          username: "",
+          email_address: "",
+          password: "",
+        }}
+        //@TODO: validate
+        onSubmit={(values) => {
+          //@TODO: submit
+          // use FormikHelpers
+          console.log(values);
+        }}
+      >
+        <Form>
+          <label>
+            <p>Login</p>
+            <TextInput
+              label="E-mail address"
+              type="email"
+              name="email_address"
+            />
+            {/* @TODO: show error if invalid and on blur */}
 
-        <label>
-          <p>Password</p>
-          <input type="password" name="password" id="log_password" />
-        </label>
-      </label>
+            <TextInput label="Username" type="text" name="username" />
+            {/* @TODO: show error if invalid and on blur */}
+
+            <TextInput label="Password" type="password" name="password" />
+            {/* @TODO: show error if invalid and on blur */}
+          </label>
+          <button type="submit">Sign up</button>
+        </Form>
+      </Formik>
     </div>
   );
 };
