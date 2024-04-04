@@ -1,5 +1,25 @@
-import { Form, Formik } from "formik";
-import { TextInput } from "../common/formikFields/TextInput";
+import { Form, Formik, FormikValues } from "formik";
+import { ZodError } from "zod";
+import {
+  UserCreationSchema,
+  UserLoginByEmailSchema,
+  UserLoginByNameSchema,
+} from "../../utils/schemas/user.schemas";
+import { AuthForm } from "./AuthForm";
+
+const formValidatation = (values: FormikValues) => {
+  try {
+    if (!values.usename && !values.email_address)
+      UserCreationSchema.parse(values);
+    if (!values.username || (values.username && values.email_address))
+      UserLoginByEmailSchema.parse(values);
+    if (!values.email_address) UserLoginByNameSchema.parse(values);
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return error.formErrors.fieldErrors;
+    }
+  }
+};
 
 export const LogIn = () => {
   return (
@@ -10,7 +30,10 @@ export const LogIn = () => {
           email_address: "",
           password: "",
         }}
-        //@TODO: validate
+        validateOnBlur={true}
+        validateOnChange={true}
+        validateOnMount={false}
+        validate={formValidatation}
         onSubmit={(values) => {
           //@TODO: submit
           // use FormikHelpers
@@ -18,22 +41,7 @@ export const LogIn = () => {
         }}
       >
         <Form>
-          <label>
-            <p>Login</p>
-            <TextInput
-              label="E-mail address"
-              type="email"
-              name="email_address"
-            />
-            {/* @TODO: show error if invalid and on blur */}
-
-            <TextInput label="Username" type="text" name="username" />
-            {/* @TODO: show error if invalid and on blur */}
-
-            <TextInput label="Password" type="password" name="password" />
-            {/* @TODO: show error if invalid and on blur */}
-          </label>
-          <button type="submit">Sign up</button>
+          <AuthForm label="Log In" />
         </Form>
       </Formik>
     </div>
