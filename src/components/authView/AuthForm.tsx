@@ -1,15 +1,17 @@
-import { TextInput } from "../common/TextInput";
+import { AuthInput } from "./AuthInput";
 
-export const AuthForm = () => {
+interface Props {
+  label: "Log In" | "Sign Up";
+}
+
+export const AuthForm = (props: Props) => {
   return (
     <div>
       <label>
-        <p>Login</p>
-        <TextInput label="Username" type="text" name="username" />
-        <TextInput label="E-mail address" type="email" name="email_address" />
-        <TextInput label="Password" type="password" name="password" />
+        <p>{props.label}</p>
+        <AuthInput />
       </label>
-      <button type="submit">Log in</button>
+      <button type="submit">{props.label}</button>
     </div>
   );
 };
