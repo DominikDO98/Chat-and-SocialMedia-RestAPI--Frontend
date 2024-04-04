@@ -5,6 +5,11 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "types": ["src/utils/types/index.types.ts"],
+      "schemas": ["src/utils/schemas/index.schemsa.ts"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
