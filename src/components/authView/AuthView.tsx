@@ -1,16 +1,16 @@
-import { FormikValues } from "formik";
 import { ZodError } from "zod";
 import {
   UserCreationSchema,
   UserLoginByEmailSchema,
   UserLoginByNameSchema,
 } from "../../utils/schemas/user.schemas";
+import { UserCreationEnitity } from "../../utils/types/user.types";
 import { AuthFormik } from "./AuthFormik";
 
 export const AuthView = () => {
-  const loginValidatation = (values: FormikValues) => {
+  const loginValidatation = (values: Omit<UserCreationEnitity, "id">) => {
     try {
-      if (!values.usename && !values.email_address)
+      if (!values.username && !values.email_address)
         UserCreationSchema.parse(values);
       if (!values.username || (values.username && values.email_address))
         UserLoginByEmailSchema.parse(values);
@@ -21,7 +21,7 @@ export const AuthView = () => {
       }
     }
   };
-  const signupValidatation = (values: FormikValues) => {
+  const signupValidatation = (values: Omit<UserCreationEnitity, "id">) => {
     try {
       UserCreationSchema.parse(values);
     } catch (error) {
