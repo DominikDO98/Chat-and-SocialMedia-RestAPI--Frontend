@@ -1,13 +1,13 @@
 import { Form, Formik } from "formik";
-import {
-  UserCreationEnitity,
-  UserLoginByEmailData,
-  UserLoginByNameData,
-} from "../../utils/types/user.types";
+import { UserCreationEnitity } from "../../utils/types/user.types";
 import { AuthForm } from "./AuthForm";
 
 interface Props {
   label: "Log In" | "Sign Up";
+  submit: (
+    values: Omit<UserCreationEnitity, "id">,
+    setSubmitting: (isSubmiting: boolean) => void
+  ) => Promise<void>;
   validatation: (values: Omit<UserCreationEnitity, "id">) =>
     | {
         [x: string]: string[] | undefined;
@@ -16,22 +16,6 @@ interface Props {
       }
     | undefined;
 }
-
-const submit = async (
-  userLoginData: UserLoginByEmailData | UserLoginByNameData,
-  setSubmitting: (isSubmiting: boolean) => void,
-  loginType: "loginUserByEmail" | "loginUserByName"
-) => {
-  const res = await fetch(`http://localhost:3000/auth/${loginType}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userLoginData }),
-  });
-  const data = await res.json();
-  // @TODO: throw error if res.status isn't ok
-  console.log(data);
-  setSubmitting(false);
-};
 
 export const AuthFormik = (props: Props) => {
   return (
@@ -46,22 +30,9 @@ export const AuthFormik = (props: Props) => {
         validateOnChange={true}
         validateOnMount={false}
         validate={(values) => props.validatation(values)}
-        onSubmit={async (values, { setSubmitting }) => {
-          if (values.email_address) {
-            const userLoginData: UserLoginByEmailData = {
-              password: values.password,
-              email_address: values.email_address,
-            };
-            await submit(userLoginData, setSubmitting, "loginUserByEmail");
-          }
-          if (!values.email_address && values.username) {
-            const userLoginData: UserLoginByNameData = {
-              password: values.password,
-              username: values.username,
-            };
-            await submit(userLoginData, setSubmitting, "loginUserByEmail");
-          }
-        }}
+        onSubmit={(values, { setSubmitting }) =>
+          props.submit(values, setSubmitting)
+        }
       >
         <Form>
           <AuthForm label={props.label} />

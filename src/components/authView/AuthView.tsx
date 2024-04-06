@@ -6,6 +6,7 @@ import {
 } from "../../utils/schemas/user.schemas";
 import { UserCreationEnitity } from "../../utils/types/user.types";
 import { AuthFormik } from "./AuthFormik";
+import { loginSubmit, signupSubmit } from "../../utils/formik/submitFunc";
 
 export const AuthView = () => {
   const loginValidatation = (values: Omit<UserCreationEnitity, "id">) => {
@@ -32,8 +33,16 @@ export const AuthView = () => {
   };
   return (
     <div>
-      <AuthFormik label="Log In" validatation={loginValidatation} />
-      <AuthFormik label="Sign Up" validatation={signupValidatation} />
+      <AuthFormik
+        label="Log In"
+        validatation={loginValidatation}
+        submit={loginSubmit}
+      />
+      <AuthFormik
+        label="Sign Up"
+        validatation={signupValidatation}
+        submit={signupSubmit}
+      />
     </div>
   );
 };
