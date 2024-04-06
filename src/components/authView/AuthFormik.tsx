@@ -1,6 +1,10 @@
 import { Form, Formik } from "formik";
 import { UserCreationEnitity } from "../../utils/types/user.types";
 import { AuthForm } from "./AuthForm";
+import {
+  authFormInitialValues,
+  authFormValidationConfig,
+} from "../../utils/formik/formConfig";
 
 interface Props {
   label: "Log In" | "Sign Up";
@@ -21,14 +25,8 @@ export const AuthFormik = (props: Props) => {
   return (
     <div id="login">
       <Formik
-        initialValues={{
-          username: "",
-          email_address: "",
-          password: "",
-        }}
-        validateOnBlur={true}
-        validateOnChange={true}
-        validateOnMount={false}
+        initialValues={authFormInitialValues}
+        {...authFormValidationConfig}
         validate={(values) => props.validatation(values)}
         onSubmit={(values, { setSubmitting }) =>
           props.submit(values, setSubmitting)
