@@ -28,18 +28,18 @@ export const loginSubmit = async (
   setSubmitting: (isSubmiting: boolean) => void
 ) => {
   if (values.email_address) {
-    const userLoginData: UserLoginByEmailData = {
+    const userAuthData: UserLoginByEmailData = {
       password: values.password,
       email_address: values.email_address,
     };
-    await submit(userLoginData, setSubmitting, "loginUserByEmail");
+    await submit(userAuthData, setSubmitting, "loginUserByEmail");
   }
   if (!values.email_address && values.username) {
-    const userLoginData: UserLoginByNameData = {
+    const userAuthData: UserLoginByNameData = {
       password: values.password,
       username: values.username,
     };
-    await submit(userLoginData, setSubmitting, "loginUserByName");
+    await submit(userAuthData, setSubmitting, "loginUserByName");
   }
 };
 
@@ -47,10 +47,10 @@ export const signupSubmit = async (
   values: Omit<UserCreationEnitity, "id">,
   setSubmitting: (isSubmiting: boolean) => void
 ) => {
-  const userRegistrationData: Omit<UserCreationEnitity, "id"> = {
+  const userAuthData: Omit<UserCreationEnitity, "id"> = {
     password: values.password,
     email_address: values.email_address,
     username: values.username,
   };
-  await submit(userRegistrationData, setSubmitting, "registerUser");
+  await submit(userAuthData, setSubmitting, "registerUser");
 };
