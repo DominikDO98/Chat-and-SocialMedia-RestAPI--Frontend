@@ -18,9 +18,12 @@ export const submit = async (
     body: JSON.stringify({ userAuthData }),
   });
   const data = await res.json();
-  // @TODO: throw error if res.status isn't ok
-  console.log(data);
-  setSubmitting(false);
+  if (res.status === 200 || res.status === 201) {
+    console.log(data);
+    setSubmitting(false);
+  } else {
+    throw new Error(`error ${res.status}`);
+  }
 };
 
 export const loginSubmit = async (
