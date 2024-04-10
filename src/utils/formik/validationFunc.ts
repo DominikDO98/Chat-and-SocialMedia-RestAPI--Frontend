@@ -6,7 +6,7 @@ import {
 } from "../schemas/user.schemas";
 import { UserCreationEnitity } from "../types/user.types";
 
-export const loginValidatation = (values: Omit<UserCreationEnitity, "id">) => {
+export const loginValidation = (values: Omit<UserCreationEnitity, "id">) => {
   try {
     if (!values.username && !values.email_address)
       UserCreationSchema.parse(values);
@@ -19,7 +19,7 @@ export const loginValidatation = (values: Omit<UserCreationEnitity, "id">) => {
     }
   }
 };
-export const signupValidatation = (values: Omit<UserCreationEnitity, "id">) => {
+export const signupValidation = (values: Omit<UserCreationEnitity, "id">) => {
   try {
     UserCreationSchema.parse(values);
   } catch (error) {
