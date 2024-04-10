@@ -1,7 +1,7 @@
 import { loginSubmit, signupSubmit } from "../../utils/formik/submitFunc";
 import {
-  loginValidatation,
-  signupValidatation,
+  loginValidation,
+  signupValidation,
 } from "../../utils/formik/validationFunc";
 import { AuthFormik } from "./AuthFormik";
 
@@ -10,12 +10,12 @@ export const AuthView = () => {
     <div>
       <AuthFormik
         label="Log In"
-        validatation={loginValidatation}
+        validatation={loginValidation}
         submit={loginSubmit}
       />
       <AuthFormik
         label="Sign Up"
-        validatation={signupValidatation}
+        validatation={signupValidation}
         submit={signupSubmit}
       />
     </div>
