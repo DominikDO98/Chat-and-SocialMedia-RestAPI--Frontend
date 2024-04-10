@@ -17,8 +17,17 @@ describe("formik validation functions tests", () => {
         password: "",
         email_address: "emailemail",
       };
+      const data2: Omit<UserCreationEnitity, "id"> = {
+        username: "name",
+        password: "",
+        email_address: "",
+      };
       expect(loginValidation(data1)).toStrictEqual({
         email_address: ["Invalid email"],
+        password: ["String must contain at least 8 character(s)"],
+      });
+      expect(loginValidation(data2)).toStrictEqual({
+        usename: ["String must contain at least 5 character(s)"],
         password: ["String must contain at least 8 character(s)"],
       });
     });
