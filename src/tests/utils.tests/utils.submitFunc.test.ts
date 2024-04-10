@@ -30,7 +30,7 @@ afterEach(() => {
 afterAll(() => {
   global.fetch = unmockedFetch;
 });
-describe("formik util functions tests", () => {
+describe("formik submit functions tests", () => {
   describe("submit function tests", () => {
     test("submit function properly calls fetch", () => {
       SubmitFunctions.submit(
