@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, PropsWithChildren } from "react";
-import { ErrorView } from "../../views/ErrorView";
+import { ErrorView } from "../../components/views/ErrorView";
 
 export class ErrorBoundry extends Component {
   public state;
