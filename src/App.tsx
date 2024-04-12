@@ -6,7 +6,7 @@ export function App() {
   return (
     <>
       <ErrorBoundry>
-        <AuthView />;
+        <AuthView />
       </ErrorBoundry>
     </>
   );

@@ -22,7 +22,7 @@ export const submit = async (
     console.log(data);
     setSubmitting(false);
   } else {
-    throw new Error(`error ${res.status}`);
+    throw new Error(`${data.message} ${res.status}`);
   }
 };
 

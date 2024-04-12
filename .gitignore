@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 __snapshots__
+AuthView.test.tsx.snap

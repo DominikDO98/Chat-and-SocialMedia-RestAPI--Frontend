@@ -5,6 +5,7 @@ import {
   authFormInitialValues,
   authFormValidationConfig,
 } from "../../utils/formik/formConfig";
+import { useHandleError } from "../../utils/hooks/useHandleError";
 
 interface Props {
   label: "Log In" | "Sign Up";
@@ -22,15 +23,20 @@ interface Props {
 }
 
 export const AuthFormik = (props: Props) => {
+  const handleError = useHandleError();
   return (
     <div id="login">
       <Formik
         initialValues={authFormInitialValues}
         {...authFormValidationConfig}
         validate={(values) => props.validatation(values)}
-        onSubmit={(values, { setSubmitting }) =>
-          props.submit(values, setSubmitting)
-        }
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            await props.submit(values, setSubmitting);
+          } catch (error) {
+            handleError(error as Error);
+          }
+        }}
       >
         <Form>
           <AuthForm label={props.label} />
