@@ -7,18 +7,18 @@ interface Props {
 }
 
 export const TextInput = (props: Props) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label>
-        {props.label}
-        <div>
-          <input {...field} {...props} className="input" />
-          {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-          ) : null}
-        </div>
-      </label>
-    </>
-  );
+	const [field, meta] = useField(props);
+	return (
+		<>
+			<label>
+				{props.label}
+				<div>
+					<input {...field} {...props} className="input" />
+					{meta.touched && meta.error ? (
+						<div className="error">{meta.error}</div>
+					) : null}
+				</div>
+			</label>
+		</>
+	);
 };
