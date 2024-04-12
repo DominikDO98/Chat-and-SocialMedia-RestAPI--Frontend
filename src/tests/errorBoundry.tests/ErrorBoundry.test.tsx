@@ -1,7 +1,7 @@
-import React from "react";
 import "@testing-library/jest-dom";
 import { cleanup, render, screen } from "@testing-library/react";
 import UserEvent from "@testing-library/user-event";
+import React from "react";
 import { ErrorBoundry } from "../../components/utils/errorboundry/ErrorBoundry";
 import { TestView } from "../testUtils/TestErrorView.testUtil";
 describe("ErrorBoundry tests", () => {
