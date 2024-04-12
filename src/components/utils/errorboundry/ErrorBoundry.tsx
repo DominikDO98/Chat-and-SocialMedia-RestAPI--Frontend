@@ -1,13 +1,9 @@
 import { Component, ErrorInfo, PropsWithChildren } from "react";
 import { ErrorView } from "../../views/ErrorView";
 
-interface Props extends PropsWithChildren {
-  message: string;
-}
-
 export class ErrorBoundry extends Component {
   public state;
-  constructor(public props: Props) {
+  constructor(public props: PropsWithChildren) {
     super(props);
     this.state = {
       hasError: false,
