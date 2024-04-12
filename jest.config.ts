@@ -8,7 +8,7 @@ const config: Config = {
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleNameMapper: {
     ".+\\.(css|sass|scss)$":
-      "<rootDir>\\src\\tests\\errorView.tests\\testUtils\\cssMock.ts",
+      "<rootDir>src\\tests\\testUtils\\TestErrorView.testUtil.tsx",
   },
 };
 
