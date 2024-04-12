@@ -7,7 +7,9 @@ export const ErrorView = (props: Props) => {
   return (
     <div id="errorBox">
       <h1 id="errorTitle">Error</h1>
-      <p id="errorMessage">{props.message}</p>
+      <p id="errorMessage" data-testId="errorMessage">
+        {props.message}
+      </p>
     </div>
   );
 };
