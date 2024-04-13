@@ -1,5 +1,5 @@
 import React from "react";
-import { useHandleError } from "../../utils/hooks/useHandleError";
+import { useHandleError } from "../../utils/errorUtils/useHandleError";
 interface Props {
   message: string;
 }

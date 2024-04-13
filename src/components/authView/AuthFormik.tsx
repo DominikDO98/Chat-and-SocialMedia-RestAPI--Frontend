@@ -3,7 +3,7 @@ import {
   authFormInitialValues,
   authFormValidationConfig,
 } from "../../utils/formik/formConfig";
-import { useHandleError } from "../../utils/hooks/useHandleError";
+import { useHandleError } from "../../utils/errorUtils/useHandleError";
 import { UserCreationEnitity } from "../../utils/types/user.types";
 import { AuthForm } from "./AuthForm";
 import { AuthenticationError } from "../../utils/errorUtils/errors";

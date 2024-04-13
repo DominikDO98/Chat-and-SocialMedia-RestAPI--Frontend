@@ -32,8 +32,8 @@ afterAll(() => {
 });
 describe("formik submit functions tests", () => {
   describe("submit function tests", () => {
-    test("submit function properly calls fetch", () => {
-      SubmitFunctions.submit(
+    test("submit function properly calls fetch", async () => {
+      await SubmitFunctions.submit(
         obj.userAuthData,
         obj.setSubmitting,
         "loginUserByEmail"
@@ -69,7 +69,9 @@ describe("formik submit functions tests", () => {
           throw new Error(error as string);
         }
       };
-      expect(throwSubmit).rejects.toThrow("error 400");
+      expect(throwSubmit).rejects.toThrow(
+        "Error: Oops, unexpected error please thry agian later!"
+      );
     });
   });
   describe("loginSubmit and signupSubmit tests", () => {
