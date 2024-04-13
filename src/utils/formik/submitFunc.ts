@@ -1,3 +1,4 @@
+import { AuthenticationError } from "../errorUtils/errors";
 import {
   UserLoginByEmailData,
   UserLoginByNameData,
@@ -21,8 +22,11 @@ export const submit = async (
   if (res.status === 200 || res.status === 201) {
     console.log(data);
     setSubmitting(false);
+  } else if (data.key) {
+    throw new AuthenticationError(data.message, data.key);
   } else {
-    throw new Error(`${data.message} ${res.status}`);
+    throw new Error("Oops, unexpected error please thry agian later!");
+    //@TODO: handle unexpected error
   }
 };
 
