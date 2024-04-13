@@ -1,6 +1,6 @@
 import "./App.css";
 import { AuthView } from "./components/authView/AuthView";
-import { ErrorBoundry } from "./utils/errorboundry/ErrorBoundry";
+import { ErrorBoundry } from "./utils/errorUtils/ErrorBoundry";
 
 export function App() {
   return (

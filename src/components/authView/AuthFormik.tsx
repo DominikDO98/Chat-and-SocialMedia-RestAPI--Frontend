@@ -1,11 +1,12 @@
 import { Form, Formik } from "formik";
-import { UserCreationEnitity } from "../../utils/types/user.types";
-import { AuthForm } from "./AuthForm";
 import {
   authFormInitialValues,
   authFormValidationConfig,
 } from "../../utils/formik/formConfig";
 import { useHandleError } from "../../utils/hooks/useHandleError";
+import { UserCreationEnitity } from "../../utils/types/user.types";
+import { AuthForm } from "./AuthForm";
+import { AuthenticationError } from "../../utils/errorUtils/errors";
 
 interface Props {
   label: "Log In" | "Sign Up";
@@ -30,11 +31,15 @@ export const AuthFormik = (props: Props) => {
         initialValues={authFormInitialValues}
         {...authFormValidationConfig}
         validate={(values) => props.validatation(values)}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, setFieldError }) => {
           try {
             await props.submit(values, setSubmitting);
-          } catch (error) {
-            handleError(error as Error);
+          } catch (err) {
+            if (err instanceof AuthenticationError) {
+              setFieldError(err.key, err.message);
+            } else {
+              handleError(err as Error);
+            }
           }
         }}
       >
